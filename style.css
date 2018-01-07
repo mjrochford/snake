@@ -13,6 +13,11 @@ body {
   width: 100%;
 }
 
+canvas {
+  display: block;
+  margin: auto;
+}
+
 .pauseButton {
   float: left;
   width: 20%;

@@ -9,10 +9,10 @@ const pauseButton = document.querySelector('button');
 const startImg = document.querySelector('img');
 
 var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-canvas.width = canvas.height = w;
-startImg.height = startImg.width = canvas.width;
-
 const gridSize = w < 610 ? 15 : 20;
+
+canvas.width = canvas.height = gridSize * Math.round(w / gridSize);
+startImg.height = startImg.width = canvas.width;
 
 let score = 0;
 let hiScore = 0;
