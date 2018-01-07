@@ -109,7 +109,6 @@ let y1;
 let y2;
 
 document.addEventListener('touchstart', function (event) {
-  document.setCapture(canvas);
   x1 = event.touches[0].clientX;
   y1 = event.touches[0].clientY;
 });
