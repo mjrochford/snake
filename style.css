@@ -1,3 +1,7 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 
 body {
   overflow: hidden;
@@ -6,8 +10,7 @@ body {
 }
 
 .gDiv {
-  width: 600px;
-  margin: auto;
+  width: 100%;
 }
 
 .pauseButton {
@@ -35,8 +38,8 @@ button {
   border-radius: 5px;
   padding: 20%;
 }
-
-@media only screen and (max-width: 411px) {
+/*
+@media only screen and (max-width: 610px) {
   .gDiv {width: 300px};
 
-}
+}*/
