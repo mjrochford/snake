@@ -5,16 +5,18 @@ const hiScoreText = document.querySelectorAll("h1")[1];
 const pauseButton = document.querySelector("button");
 const startImg = document.querySelector("img");
 
-canvas.width = canvas.height = 600;
-startImg.height = startImg.width = canvas.height;
+var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
+canvas.width = canvas.height = w < 420 ? 300 : 600;
+startImg.height = startImg.width = canvas.width;
 
-const gridSize = 20;
+const gridSize = w < 420 ? 15 : 20;
 
 let score = 0;
 let hiScore = 0;
 
-let px = py = 0;
+let px = 0;
+let py = 0;
 let vx = 1;
 let vy = 0;
 const tail = [];
@@ -25,7 +27,7 @@ let apy = Math.round(Math.random() * gridSize);
 
 let playing = false;
 
-const game = setInterval(update, 70);
+setInterval(update, 70);
 
 pauseButton.addEventListener("click", function() {
   playing = !playing;
@@ -56,7 +58,7 @@ function update() {
       py = canvas.height / gridSize;
     }
 
-    if (apx == px && apy == py) {
+    if (apx === px && apy === py) {
       apx = Math.round(Math.random() * (canvas.height / gridSize - 1));
       apy = Math.round(Math.random() * (canvas.height / gridSize - 1));
       length++;
@@ -95,6 +97,36 @@ document.addEventListener("keydown", function (event) {
       vy = 1;
       vx = 0;
     }
+  }
+});
+
+let x1;
+let x2;
+let y1;
+let y2;
+
+document.addEventListener('touchstart', function (event) {
+  x1 = event.touches[0].clientX;
+  y1 = event.touches[0].clientY;
+
+});
+
+document.addEventListener('touchend', function (event) {
+  x2 = event.changedTouches[0].clientX;
+  y2 = event.changedTouches[0].clientY;
+
+  if (x2 - x1 > 0 && Math.abs(y2 - y1) < Math.abs(x2 - x1) && vx !== -1) {
+    vx = 1;
+    vy = 0;
+  } else if (x2 - x1 < 0 && Math.abs(y2 - y1) < Math.abs(x2 - x1) && vx !== 1) {
+    vx = -1;
+    vy = 0;
+  } else if (y2 - y1 > 0 && Math.abs(y2 - y1) > Math.abs(x2 - x1) && vy !== -1) {
+    vx = 0;
+    vy = 1;
+  } else if (y2 - y1 < 0 && Math.abs(y2 - y1) > Math.abs(x2 - x1) && vy !== 1) {
+    vx = 0;
+    vy = -1;
   }
 });
 
