@@ -10,7 +10,7 @@ const startImg = document.querySelector('img');
 
 var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 hiScoreText.textContent = w;
-canvas.width = canvas.height = w < 420 ? 300 : 600;
+canvas.width = canvas.height = w < 700 ? 300 : 600;
 startImg.height = startImg.width = canvas.width;
 
 const gridSize = w < 420 ? 15 : 20;
