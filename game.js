@@ -1,3 +1,4 @@
+// Version 1.0
 /* eslint semi: ['error', 'always'] */
 
 const canvas = document.getElementById('gc');
