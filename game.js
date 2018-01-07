@@ -1,9 +1,11 @@
-const canvas = document.getElementById("gc");
-const ctx = canvas.getContext("2d");
-const scoreText = document.querySelectorAll("h1")[0];
-const hiScoreText = document.querySelectorAll("h1")[1];
-const pauseButton = document.querySelector("button");
-const startImg = document.querySelector("img");
+/* eslint semi: ['error', 'always'] */
+
+const canvas = document.getElementById('gc');
+const ctx = canvas.getContext('2d');
+const scoreText = document.querySelectorAll('h1')[0];
+const hiScoreText = document.querySelectorAll('h1')[1];
+const pauseButton = document.querySelector('button');
+const startImg = document.querySelector('img');
 
 var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 
@@ -29,16 +31,17 @@ let playing = false;
 
 setInterval(update, 70);
 
-pauseButton.addEventListener("click", function() {
+pauseButton.addEventListener('click', function () {
   playing = !playing;
-  startImg.style.display = 'none'
-  if (!playing)
-    pauseButton.textContent = "Play";
-  else
-    pauseButton.textContent = "Pause";
+  startImg.style.display = 'none';
+  if (!playing) {
+    pauseButton.textContent = 'Play';
+  } else {
+    pauseButton.textContent = 'Pause';
+  }
 });
 
-function update() {
+function update () {
   if (playing) {
     tail.unshift([px, py]);
     while (tail.length > length) {
@@ -46,7 +49,6 @@ function update() {
     }
     px += vx;
     py += vy;
-
 
     if (px > canvas.width / gridSize - 1) {
       px = 0;
@@ -64,14 +66,14 @@ function update() {
       length++;
       score++;
       scoreText.textContent = scoreText.textContent.substring(0, 8) + score;
-
     }
 
     for (let i = 0; i < tail.length; i++) {
-      if (tail[i][0] == px && tail[i][1] == py) {
+      if (tail[i][0] === px && tail[i][1] === py) {
         length = 5;
-        if (score > hiScore)
+        if (score > hiScore) {
           hiScore = score;
+        }
         score = 0;
         scoreText.textContent = scoreText.textContent.substring(0, 8) + score;
         hiScoreText.textContent = hiScoreText.textContent.substring(0, 13) + hiScore;
@@ -82,18 +84,18 @@ function update() {
   }
 }
 
-document.addEventListener("keydown", function (event) {
+document.addEventListener('keydown', function (event) {
   if (playing) {
-    if (event.keyCode == 37 && vx != 1) {
+    if (event.keyCode === 37 && vx !== 1) {
       vx = -1;
       vy = 0;
-    } else if (event.keyCode == 38 && vy != 1) {
+    } else if (event.keyCode === 38 && vy !== 1) {
       vy = -1;
       vx = 0;
-    } else if (event.keyCode == 39 && vx != -1) {
+    } else if (event.keyCode === 39 && vx !== -1) {
       vx = 1;
       vy = 0;
-    } else if (event.keyCode == 40 && vy != -1) {
+    } else if (event.keyCode === 40 && vy !== -1) {
       vy = 1;
       vx = 0;
     }
@@ -108,7 +110,6 @@ let y2;
 document.addEventListener('touchstart', function (event) {
   x1 = event.touches[0].clientX;
   y1 = event.touches[0].clientY;
-
 });
 
 document.addEventListener('touchend', function (event) {
@@ -130,14 +131,14 @@ document.addEventListener('touchend', function (event) {
   }
 });
 
-function drawPlayer() {
-  ctx.fillStyle = "#000";
+function drawPlayer () {
+  ctx.fillStyle = '#000';
   ctx.fillRect(0, 0, canvas.height, canvas.width);
 
-  ctx.fillStyle = "#f00";
+  ctx.fillStyle = '#f00';
   ctx.fillRect(apx * gridSize, apy * gridSize, gridSize, gridSize);
 
-  ctx.fillStyle = "#DDD";
+  ctx.fillStyle = '#DDD';
   ctx.fillRect(px * gridSize, py * gridSize, gridSize, gridSize);
 
   for (let i = 0; i < tail.length; i++) {
