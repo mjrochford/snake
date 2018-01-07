@@ -9,7 +9,7 @@ const pauseButton = document.querySelector('button');
 const startImg = document.querySelector('img');
 
 var w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-
+hiScoreText.textContent = w;
 canvas.width = canvas.height = w < 420 ? 300 : 600;
 startImg.height = startImg.width = canvas.width;
 
@@ -109,7 +109,6 @@ let y1;
 let y2;
 
 document.addEventListener('touchstart', function (event) {
-  document.setCapture(canvas);
   x1 = event.touches[0].clientX;
   y1 = event.touches[0].clientY;
 });
